@@ -1,0 +1,41 @@
+<h1>Pokémon</h1>
+<form>
+    <p> Search for a pokemon by name or using its national pokédex number.</p>
+    <mat-form-field appearance="fill">
+
+        <mat-label>Pokemon</mat-label>
+        <input type="text" matInput [formControl]="searchBar" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option ">
+                {{option.name}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</form>
+
+<button mat-button>Pokemon I've Caught</button>
+<button mat-button>Wishlist</button>
+
+
+<div class="pokemon-list">
+
+    <!-- {{ pokemonList$  | async | json }} -->
+
+    <!-- TODO: Lazyloading -->
+    <pkm-pokemon-card *ngFor="let pokemon of pokemonList$ | async" [name]="pokemon.name" [pokemonIndex]="pokemon.id"
+        [types]="pokemon.types"></pkm-pokemon-card>
+</div>
+
+
+<!-- WIP
+
+<mat-paginator
+    (page)="handlePageEvent($event)"
+    [length]="length"
+    [pageSize]="pageSize"
+    [showFirstLastButtons]="showFirstLastButtons"
+    [pageSizeOptions]="pageSizeOptions"
+    [pageIndex]="pageIndex"
+    aria-label="Select page">
+</mat-paginator>
+-->

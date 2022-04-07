@@ -1,0 +1,8 @@
+<mat-card class="pokemon-card mat-elevation-z0">
+    <img src='{{ "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/" +  pad(pokemonIndex, 3) +  ".png" }}' loading="lazy" [alt]="name">
+    <mat-label>Nr.{{ pokemonIndex }}</mat-label>
+    <p>{{ name | titlecase }}</p>
+    <mat-chip-list class="mat-chip-list-stacked pokemon-types">
+        <mat-chip *ngFor="let type of types" [class]="type.type.name" >{{ type.type.name | titlecase  }}</mat-chip>
+    </mat-chip-list>
+</mat-card>
